@@ -21,9 +21,11 @@ import org.jetbrains.annotations.NotNull;
  * Called when a quest is quit by a quester
  */
 public class QuestQuitEvent extends QuestEvent implements Cancellable {
-    private static final HandlerList HANDLERS = new HandlerList();
+    private static final HandlerList handerList = new HandlerList();
     private final Quester quester;
     private boolean cancel = false;
+    private String cancelReason = "An external hook has cancelled this quest!";
+
 
     public QuestQuitEvent(final Quest quest, final Quester who) {
         super(quest);
@@ -38,6 +40,14 @@ public class QuestQuitEvent extends QuestEvent implements Cancellable {
     public Quester getQuester() {
         return quester;
     }
+
+    public void setCancelReason(String reason) {
+        this.cancelReason = reason;
+    }
+
+    public String getCancelReason() {
+        return cancelReason;
+    }
     
     @Override
     public boolean isCancelled() {
@@ -51,10 +61,10 @@ public class QuestQuitEvent extends QuestEvent implements Cancellable {
 
     @Override
     public @NotNull HandlerList getHandlers() {
-        return HANDLERS;
+        return handerList;
     }
     
     public static HandlerList getHandlerList() {
-        return HANDLERS;
+        return handerList;
     }
 }
