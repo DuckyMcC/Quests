@@ -23,11 +23,11 @@ public abstract class QuestEvent extends QuestsEvent {
     private static final HandlerList HANDLERS = new HandlerList();
     private final Quest quest;
     
-    public QuestEvent(final Quest quest) {
+    public QuestEvent(Quest quest) {
         this.quest = quest;
     }
     
-    public QuestEvent(final Quest quest, final boolean async) {
+    public QuestEvent(@NotNull Quest quest, boolean async) {
         super(async);
         this.quest = quest;
     }
